@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StopMo Pro</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#test_the_things").on("click", function() {
+                
+                var url = "/take_image/";
+                
+                $.ajax({
+                    method: "GET",
+                    url: url,
+                    success: function(data) {
+                        $("body").append(data.success);
+                    }
+                });
+            });
+            
+            $("#clear_mount").on("click", function() {
+                
+                var url = "/clear_mount/";
+                
+                $.ajax({
+                    method: "GET",
+                    url: url,
+                    success: function(data) {
+                        $("body").append(data.success);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <button id="test_the_things">test the things</button>
+    <br>
+    <button id="clear_mount">clear mount</button>
+
+</body>
+</html>
