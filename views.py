@@ -7,14 +7,6 @@ import json
 from scripts.django_cam_controller import capture_image, get_pid, capture_interval
 
 
-def home(request):
-    context_instance = RequestContext(request)
-
-    context = {'request': request, }
-
-    return render_to_response("home.html", context, context_instance=context_instance)
-
-
 def take_image(request):
     
     capture_image()
