@@ -32,6 +32,20 @@
                     }
                 });
             });
+
+            $("#capture_interval").on("click", function() {
+                var interval = $("#set_capture_interval").val();
+                var url = "/take_interval/?sec=" + interval;
+
+                $.ajax({
+                    method: "GET",
+                    url: url,
+                    success: function(data) {
+                        $("body").append(data.success);
+                    }
+                })
+            });
+
         });
     </script>
 </head>
@@ -41,6 +55,9 @@
     <button id="test_the_things">test the things</button>
     <br>
     <button id="clear_mount">clear mount</button>
+    <br>
+    <input id="set_capture_interval" placeholder="Set in number of seconds">
+    <button id="capture_interval">Capture Interal</button>
 
 </body>
 </html>

@@ -22,3 +22,10 @@ def get_pid():
         print "Camera unmounted and ready to use."
     else:
         print "Nothing to unmount."
+
+def capture_interval(sec):
+    if (sec):
+        os.system("gphoto2 --capture-image --interval %s" % sec)
+        print "Capturing at interval of %s" % sec
+    else:
+        print "No interval set. Please set an interval (in seconds)."
