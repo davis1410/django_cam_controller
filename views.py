@@ -9,7 +9,6 @@ from scripts.django_cam_controller import capture_image, get_pid, capture_interv
 
 def take_image(request):
     image_dir = request.GET['image_dir']
-    print image_dir
     
     capture = capture_image(image_dir)
 
