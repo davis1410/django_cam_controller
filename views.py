@@ -4,7 +4,7 @@ from django.template.context import RequestContext
 
 import json
 
-from scripts.django_cam_controller import capture_image, get_pid, capture_interval
+from scripts.django_cam_controller import capture_image, get_pid, capture_interval, compile_video
 
 
 def take_image(request):
@@ -19,6 +19,7 @@ def take_image(request):
 
     return HttpResponse(json.dumps(data), content_type="application/json")
 
+
 def clear_mount(request):
     clear_mount = get_pid()
     
@@ -28,13 +29,26 @@ def clear_mount(request):
     
     return HttpResponse(json.dumps(data), content_type="application/json")
 
+
 def take_interval(request):
     frames = request.GET["frames"]
-    sec    = request.GET["sec"]
+    sec = request.GET["sec"]
     capture_interval(frames,sec)
 
     data = {
         "result": capture_interval
     }
 
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+def compile_preview(request):
+    image_dir = request.GET['image_dir']
+    
+    compile = compile_video(image_dir)
+    
+    data = {
+        "result": compile
+    }
+    
     return HttpResponse(json.dumps(data), content_type="application/json")
