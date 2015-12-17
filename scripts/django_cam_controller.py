@@ -2,9 +2,11 @@ import os, re, subprocess
 
 user_dir = os.path.expanduser('~')
 
-def capture_image():
-    #os.system("gphoto2 --set-config capturetarget=1 --capture-image")
-    capture_image = subprocess.Popen(['gphoto2', '--set-config', 'capturetarget=1', '--capture-image'], stdout=subprocess.PIPE)
+def capture_image(image_dir):
+    filename = "%s/%s/%s" % (user_dir, image_dir, "%:")
+    print filename
+    
+    capture_image = subprocess.Popen(['gphoto2', '--capture-image-and-download', '--filename', filename, '--keep'], stdout=subprocess.PIPE)
     capture_result = capture_image.stdout.read()
 
     os.system("gphoto2 --summary")
