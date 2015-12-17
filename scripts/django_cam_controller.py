@@ -28,6 +28,21 @@ def get_pid():
         os.system('ps aux | grep -i "gphoto"')
         message = "Camera unmounted and ready to use."
     else:
+        print "Nothing to unmount."
+
         message = "Nothing to unmount."
 
     return message
+
+def capture_interval(frames ,sec):
+    if (sec):
+        os.system("gphoto2 --capture-image -F %s --interval %s" % (frames, sec))
+        
+        message = "Capturing at interval of %s for %s frames." % (sec, frames)
+        print message
+    else:
+        message = "No interval set. Please set an interval (in seconds)."
+        print message
+
+    return message
+
