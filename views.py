@@ -14,7 +14,7 @@ def take_image(request):
     capture = capture_image(image_dir)
 
     data = {
-        "success": capture
+        "result": capture
     }
 
     return HttpResponse(json.dumps(data), content_type="application/json")
@@ -23,7 +23,7 @@ def clear_mount(request):
     clear_mount = get_pid()
     
     data = {
-        "success": clear_mount
+        "result": clear_mount
     }
     
     return HttpResponse(json.dumps(data), content_type="application/json")
@@ -34,7 +34,7 @@ def take_interval(request):
     capture_interval(frames,sec)
 
     data = {
-        "success": "Capturing at interval"
+        "result": capture_interval
     }
 
     return HttpResponse(json.dumps(data), content_type="application/json")
