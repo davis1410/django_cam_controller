@@ -2,8 +2,8 @@ import os, re, subprocess
 
 user_dir = os.path.expanduser('~')
 
-def capture_image():
-    filename = "%s/Development/raspberry_pi/test_images/%s" % (user_dir, "%:")
+def capture_image(image_dir):
+    filename = "%s/%s/%s" % (user_dir, image_dir, "%:")
     print filename
     
     capture_image = subprocess.Popen(['gphoto2', '--capture-image-and-download', '--filename', filename, '--keep'], stdout=subprocess.PIPE)

@@ -8,8 +8,10 @@ from scripts.django_cam_controller import capture_image, get_pid
 
 
 def take_image(request):
+    image_dir = request.GET['image_dir']
+    print image_dir
     
-    capture = capture_image()
+    capture = capture_image(image_dir)
 
     data = {
         "success": capture
