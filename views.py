@@ -33,10 +33,10 @@ def clear_mount(request):
 def take_interval(request):
     frames = request.GET["frames"]
     sec = request.GET["sec"]
-    capture_interval(frames,sec)
+    capture = capture_interval(frames, sec)
 
     data = {
-        "result": capture_interval
+        "result": capture
     }
 
     return HttpResponse(json.dumps(data), content_type="application/json")
