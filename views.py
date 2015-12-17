@@ -9,19 +9,19 @@ from scripts.django_cam_controller import capture_image, get_pid, capture_interv
 
 def take_image(request):
     
-    capture_image()
+    capture = capture_image()
 
     data = {
-        "success": "image captured"
+        "success": capture
     }
 
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 def clear_mount(request):
-    get_pid()
+    clear_mount = get_pid()
     
     data = {
-        "success": "camera unmounted"
+        "success": clear_mount
     }
     
     return HttpResponse(json.dumps(data), content_type="application/json")
