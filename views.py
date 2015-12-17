@@ -27,8 +27,9 @@ def clear_mount(request):
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 def take_interval(request):
-    sec = request.GET["sec"]
-    capture_interval(sec)
+    frames = request.GET["frames"]
+    sec    = request.GET["sec"]
+    capture_interval(frames,sec)
 
     data = {
         "success": "Capturing at interval"

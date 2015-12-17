@@ -32,9 +32,15 @@ def get_pid():
 
     return message
 
-def capture_interval(sec):
+def capture_interval(frames ,sec):
     if (sec):
-        os.system("gphoto2 --capture-image --interval %s" % sec)
-        print "Capturing at interval of %s" % sec
+        os.system("gphoto2 --capture-image -F %s --interval %s" % (frames, sec))
+        
+        message = "Capturing at interval of %s for %s frames." % (sec, frames)
+        print message
     else:
-        print "No interval set. Please set an interval (in seconds)."
+        message = "No interval set. Please set an interval (in seconds)."
+        print message
+
+    return message
+
