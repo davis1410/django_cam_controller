@@ -2,33 +2,13 @@ import os, re, subprocess
 
 user_dir = os.path.expanduser('~')
 
-def capture_image(image_dir):
-    filename = "%s/%s/%s" % (user_dir, image_dir, "%:")
-    
-    capture_image = subprocess.Popen(['gphoto2', '--capture-image-and-download', '--filename', filename, '--keep'], stdout=subprocess.PIPE)
+def capture_image():
+    capture_image = subprocess.Popen(['gphoto2', '--capture-image-and-download', '--filename', 'django_cam_controller/static/img/%:', '--keep'], stdout=subprocess.PIPE)
     capture_result = capture_image.stdout.read()
 
     os.system("gphoto2 --summary")
 
     return capture_result
-    
-def get_pid():
-    p1 = subprocess.Popen(['ps', 'aux'], stdout=subprocess.PIPE)
-    p2 = subprocess.Popen(['grep', '-i', 'gphoto'], stdin=p1.stdout, stdout=subprocess.PIPE)
-    process = p2.stdout.read()
-    
-    pid = re.search( '\npi\s+(\d+).+gphoto2 --spawner.+', process, re.M )
-
-    message = ''
-
-    if pid:
-        os.system('kill -9 %s' % pid.group(1))
-        os.system('ps aux | grep -i "gphoto"')
-        message = "Camera unmounted and ready to use."
-    else:
-        message = "Nothing to unmount."
-
-    return message
 
 def capture_interval(frames ,sec):
     if (sec):
@@ -41,11 +21,11 @@ def capture_interval(frames ,sec):
 
     return message
 
-def compile_video(image_dir, framerate):
-    os.chdir("%s/%s" % (user_dir, image_dir))
+def compile_video(framerate):
+    os.chdir('django_cam_controller/static/img/')
     os.system("mogrify -auto-orient -resize 800x600! *.jpg")
     
-    os.system("ffmpeg -y -pattern_type glob -framerate %s -i '*.jpg' -vcodec mpeg4 preview.mp4" % framerate)
+    os.system("ffmpeg -y -pattern_type glob -framerate %s -i '*.jpg' -vcodec mpeg4 ../video/preview.mp4" % framerate)
     
     message = "Movie compiled"
     
