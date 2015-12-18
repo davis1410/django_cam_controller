@@ -27,6 +27,8 @@ def compile_video(framerate):
     
     os.system("ffmpeg -y -pattern_type glob -framerate %s -i '*.jpg' -vcodec mpeg4 ../video/preview.mp4" % framerate)
     
+    os.chdir("../../../")
+    
     message = "Movie compiled"
     
     return message
