@@ -45,7 +45,7 @@ def compile_video(image_dir):
     os.chdir("%s/%s" % (user_dir, image_dir))
     os.system("mogrify -auto-orient -resize 800x600! *.jpg")
     
-    os.system("ffmpeg -y -pattern_type glob -i '*.jpg' -vcodec mpeg4 out.mp4")
+    os.system("ffmpeg -y -pattern_type glob -framerate 15 -i '*.jpg' -vcodec mpeg4 preview.mp4")
     
     message = "Movie compiled"
     
