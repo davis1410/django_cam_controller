@@ -43,8 +43,9 @@ def take_interval(request):
 
 def compile_preview(request):
     image_dir = request.GET['image_dir']
+    framerate = request.GET['framerate']
     
-    compile = compile_video(image_dir)
+    compile = compile_video(image_dir, framerate)
     
     data = {
         "result": compile

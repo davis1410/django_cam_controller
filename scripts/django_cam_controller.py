@@ -41,11 +41,11 @@ def capture_interval(frames ,sec):
 
     return message
 
-def compile_video(image_dir):
+def compile_video(image_dir, framerate):
     os.chdir("%s/%s" % (user_dir, image_dir))
     os.system("mogrify -auto-orient -resize 800x600! *.jpg")
     
-    os.system("ffmpeg -y -pattern_type glob -framerate 15 -i '*.jpg' -vcodec mpeg4 preview.mp4")
+    os.system("ffmpeg -y -pattern_type glob -framerate %s -i '*.jpg' -vcodec mpeg4 preview.mp4" % framerate)
     
     message = "Movie compiled"
     
