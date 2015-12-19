@@ -25,7 +25,7 @@ def compile_video(framerate):
     os.chdir('django_cam_controller/static/img/')
     os.system("mogrify -auto-orient -resize 800x600! *.jpg")
     
-    os.system("ffmpeg -y -pattern_type glob -framerate %s -i '*.jpg' -vcodec mpeg4 ../video/preview.mp4" % framerate)
+    os.system("ffmpeg -y -pattern_type glob -framerate %s -i '*.jpg' -an -s hd720 -vcodec libx264 -pix_fmt yuv420p -preset slow -profile:v baseline -movflags faststart ../video/preview.mp4" % framerate)
     
     os.chdir("../../../")
     
