@@ -4,7 +4,7 @@ from django.template.context import RequestContext
 
 import json
 
-from scripts.django_cam_controller import capture_image, capture_interval, compile_video
+from scripts.django_cam_controller import *
 
 
 def take_image(request):
@@ -36,6 +36,15 @@ def compile_preview(request):
     
     data = {
         "result": compile
+    }
+    
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+def new_sequence_creation(request):
+    new_sequence = new_sequence()
+    
+    data = {
+        "result": new_sequence
     }
     
     return HttpResponse(json.dumps(data), content_type="application/json")

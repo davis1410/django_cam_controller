@@ -33,3 +33,11 @@ def compile_video(framerate):
     
     return message
 
+def new_sequence():
+    img_dir = "django_cam_controller/static/img"
+    os.system("rm -rf %s" % img_dir)
+    os.makedirs(img_dir)
+    
+    message = "Ready to capture new sequence"
+    
+    return message
