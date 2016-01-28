@@ -41,10 +41,10 @@ def compile_preview(request):
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 def new_sequence_creation(request):
-    new_sequence = new_sequence()
+    sequence = new_sequence()
     
     data = {
-        "result": new_sequence
+        "result": sequence
     }
     
     return HttpResponse(json.dumps(data), content_type="application/json")
