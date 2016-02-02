@@ -7,6 +7,16 @@ import json
 from scripts.django_cam_controller import *
 
 
+def get_num_images(request):
+    num = num_images()
+    
+    data = {
+        "num_images": num
+    }
+    
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+
 def take_image(request):
     capture = capture_image()
     num = num_images()
