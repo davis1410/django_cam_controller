@@ -2,6 +2,15 @@ import os, re, subprocess
 
 user_dir = os.path.expanduser('~')
 
+def num_images():
+    n1 = subprocess.Popen(['ls', 'django_cam_controller/static/img'], stdout=subprocess.PIPE)
+    n2 = subprocess.Popen(['wc', '-l'], stdin=n1.stdout, stdout=subprocess.PIPE)
+    result = n2.stdout.read()
+    
+    num_images = result.replace("\n", "")
+    
+    return num_images
+
 def capture_image():
     capture_image = subprocess.Popen(['gphoto2', '--capture-image-and-download', '--filename', 'django_cam_controller/static/img/%:', '--keep'], stdout=subprocess.PIPE)
     capture_result = capture_image.stdout.read()

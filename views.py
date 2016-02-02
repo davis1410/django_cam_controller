@@ -9,9 +9,11 @@ from scripts.django_cam_controller import *
 
 def take_image(request):
     capture = capture_image()
+    num = num_images()
 
     data = {
-        "result": capture
+        "result": capture,
+        "num_images": num
     }
 
     return HttpResponse(json.dumps(data), content_type="application/json")
@@ -42,9 +44,11 @@ def compile_preview(request):
 
 def new_sequence_creation(request):
     sequence = new_sequence()
+    num = num_images()
     
     data = {
-        "result": sequence
+        "result": sequence,
+        "num_images": num
     }
     
     return HttpResponse(json.dumps(data), content_type="application/json")
